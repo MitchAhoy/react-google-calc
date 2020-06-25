@@ -4,7 +4,10 @@ import { Card, Form } from 'react-bootstrap'
 
 
 function MetricInputCard(props) {
+
+
   return (
+
 
     <Card
       bg='light'
@@ -18,9 +21,14 @@ function MetricInputCard(props) {
         {props.metricLabel}
       </Card.Header>
       <Card.Body>
-        <Form.Control />
+        <Form.Control
+          onChange={props.inputChange}
+          name={props.metricLabel}
+        />
       </Card.Body>
     </Card>
+
+
 
   );
 }
