@@ -1,11 +1,11 @@
 import React from 'react';
 
-import MetricInput from './components/MetricInput/MetricInput'
+import Dashboard from './components/Dashboard/Dashboard'
 
 function App() {
   return (
     <div className="App">
-      <MetricInput />
+      <Dashboard />
     </div>
   );
 }

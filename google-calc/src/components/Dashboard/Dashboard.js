@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import MetricInput from '../MetricInput/MetricInput'
 
-function Dashboard() {
+function Dashboard(props) {
 
-  const [campaigns, setCampaigns] = useState({})
+  const [campaigns, setCampaigns] = useState([])
 
-  const submitCampaign = evt => {
-    evt.preventDefault()
-    console.log('submit from dashboard')
+  const submitCampaign = formData => {
+    setCampaigns([...campaigns, formData])
+    // console.log(form)
   }
-
 
   return (
 

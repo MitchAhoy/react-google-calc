@@ -9,7 +9,18 @@ function MetricInput(props) {
   const [formData, setFormData] = useState({})
 
   const handleChange = evt => {
-    setFormData({ ...formData, [evt.target.name]: evt.target.value })
+
+    if (typeof parseInt(evt.target.value) === 'number') {
+      setFormData({ ...formData, [evt.target.name]: parseInt(evt.target.value) })
+    } else if (typeof parseInt(evt.target.value) !== 'number') {
+      setFormData({ ...formData, [evt.target.name]: evt.target.value.toString() })
+    }
+  }
+
+  const handleSubmit = evt => {
+    evt.preventDefault()
+    props.submitCampaign(formData)
+    setFormData({})
   }
 
   const formFields = inputFields.map((field, idx) => <MetricInputCard key={idx} metricLabel={field} inputChange={handleChange} />
@@ -18,7 +29,7 @@ function MetricInput(props) {
   return (
 
     <div className='MetricInput text-center'>
-      <Form onSubmit={props.submitCampaign}>
+      <Form onSubmit={handleSubmit}>
         <div className='d-flex flex-wrap justify-content-center m-3'>
           {formFields}
         </div>
