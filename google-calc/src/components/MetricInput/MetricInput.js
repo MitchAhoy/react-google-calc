@@ -10,12 +10,15 @@ function MetricInput(props) {
 
   const handleChange = evt => {
 
-    if (typeof parseInt(evt.target.value) === 'number') {
+    if (evt.target.name !== 'Campaign Name') {
       setFormData({ ...formData, [evt.target.name]: parseInt(evt.target.value) })
-    } else if (typeof parseInt(evt.target.value) !== 'number') {
-      setFormData({ ...formData, [evt.target.name]: evt.target.value.toString() })
+      console.log(typeof parseInt(evt.target.value))
+    } else {
+      setFormData({ ...formData, [evt.target.name]: evt.target.value })
     }
   }
+
+
 
   const handleSubmit = evt => {
     evt.preventDefault()
@@ -41,4 +44,4 @@ function MetricInput(props) {
   );
 }
 
-export default MetricInput;
+export default MetricInput

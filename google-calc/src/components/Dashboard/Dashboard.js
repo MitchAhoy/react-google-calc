@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MetricInput from '../MetricInput/MetricInput'
+import OverviewTable from '../OverviewTable/OverviewTable'
 
 function Dashboard(props) {
 
@@ -7,15 +8,13 @@ function Dashboard(props) {
 
   const submitCampaign = formData => {
     setCampaigns([...campaigns, formData])
-    // console.log(form)
   }
 
   return (
 
     <div className='Dashboard'>
-      <MetricInput
-        submitCampaign={submitCampaign}
-      />
+      <MetricInput submitCampaign={submitCampaign} />
+      <OverviewTable campaigns={campaigns} />
     </div>
 
   );
