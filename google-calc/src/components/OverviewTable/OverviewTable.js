@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table'
-import CalculateMetrics from '../../helpers/calculate'
+import removeBtn from './close.png'
+
 
 function OverviewTable(props) {
 
-
+  const [modalShow, setModalShow] = useState(false)
 
   const columns = ['Campaign Name', 'Additional Clicks', 'Additional Conversions', 'Additional Cost', 'Detailed Breakdown', 'Remove']
 
-  const [projectionMetrics, setProjectionMetrics] = useState({})
-
-  const campaignMetrics = new CalculateMetrics('Brand', 100, 1000, 500, 20, 15, 30)
-
-  console.log(campaignMetrics)
+  const showDetailedMetrics = evt => {
+    const CampaignId = evt.target.id
+  }
 
   return (
     <Table responsive bordered hover>
@@ -22,9 +21,14 @@ function OverviewTable(props) {
         </tr>
       </thead>
       <tbody>
-        {props.campaigns.map(campaign => {
-          return <tr>
-            <td>{campaign['Campaign Name']}</td>
+        {props.campaigns.map((campaign, idx) => {
+          return <tr key={idx}>
+            <td>{campaign.campaignName}</td>
+            <td>{campaign.additionalClicks}</td>
+            <td>{campaign.additionalConversions}</td>
+            <td>{campaign.additionalCost}</td>
+            <td onClick={showDetailedMetrics} id={campaign.id}>View More</td>
+            <td><img src={removeBtn}/></td>
           </tr>
         })}
       </tbody>

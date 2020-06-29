@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Form, FormControl } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
 import MetricInputCard from '../MetricInputCard/MetricInputCard'
 
 function MetricInput(props) {
@@ -36,7 +36,7 @@ function MetricInput(props) {
         <div className='d-flex flex-wrap justify-content-center m-3'>
           {formFields}
         </div>
-        <Button type='submit'>Calculate!</Button>
+        <Button type='submit' className='mb-3'>Calculate!</Button>
       </Form>
 
     </div>
