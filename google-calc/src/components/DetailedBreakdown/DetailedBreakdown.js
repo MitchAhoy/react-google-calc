@@ -19,7 +19,7 @@ function DetailedBreakdown(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
           {currCampaign.campaignName}
         </Modal.Title>
@@ -28,7 +28,7 @@ function DetailedBreakdown(props) {
         <Table responsive bordered>
           <thead>
             <tr>
-              {headings.basic.map(heading => <td>{heading}</td>)}
+              {headings.basic.map((heading, idx) => <td key={idx}>{heading}</td>)}
             </tr>
           </thead>
           <tbody>
@@ -50,7 +50,7 @@ function DetailedBreakdown(props) {
         <Table responsive bordered>
           <thead>
             <tr>
-              {headings.projections.map(heading => <td>{heading}</td>)}
+              {headings.projections.map((heading, idx) => <td key={idx}>{heading}</td>)}
             </tr>
           </thead>
           <tbody>
@@ -69,7 +69,7 @@ function DetailedBreakdown(props) {
         <Table responsive bordered>
           <thead>
             <tr>
-              {headings.additional.map(heading => <td>{heading}</td>)}
+              {headings.additional.map((heading, idx) => <td key={idx}>{heading}</td>)}
             </tr>
           </thead>
           <tbody>
