@@ -3,39 +3,38 @@ import MetricInput from '../MetricInput/MetricInput'
 import OverviewTable from '../OverviewTable/OverviewTable'
 import CalculateMetrics from '../../helpers/calculate'
 import saveCampaigns from '../../helpers/saveLocalStorage'
+import unqiqueObjects from '../../helpers/uniqueObjects'
 
 
 function Dashboard() {
 
+  useEffect(() => {
+    if (localStorage.getItem('campaigns') === null) localStorage.setItem('campaigns', '[]')
+  })
+
   const initState = () => {
     let campaignsJSON = localStorage.getItem('campaigns')
-    return campaignsJSON !== null ? JSON.parse(campaignsJSON) : [] 
+    return campaignsJSON !== null ? JSON.parse(campaignsJSON) : []
   }
 
-  const [campaigns, setCampaigns] = useState([])
   const [calculatedCampaigns, setCalculatedCampaigns] = useState(initState())
 
-  console.log(campaigns, calculatedCampaigns)
   const submitCampaign = formData => {
-    setCampaigns([...campaigns, formData])
+    const newCampaign = new CalculateMetrics(formData['Campaign Name'], formData['Clicks'], formData['Impressions'], formData['Cost'], formData['Conversions'], formData['IS Lost (Rank)'], formData['IS Lost (Budget)'])
+
+    setCalculatedCampaigns([...calculatedCampaigns, newCampaign])
+
+    localStorage.setItem('campaigns', JSON.stringify(newCampaign))
   }
 
 
-  useEffect(() => {
-    if (campaigns.length !== 0) {
-      let tempCampaigns = {}
-      campaigns.forEach((campaign, idx) => {
-        tempCampaigns[idx] = new CalculateMetrics(campaign['Campaign Name'], campaign['Clicks'], campaign['Impressions'], campaign['Cost'], campaign['Conversions'], campaign['IS Lost (Rank)'], campaign['IS Lost (Budget)'])
-      })
-      setCalculatedCampaigns([...calculatedCampaigns, {...tempCampaigns}])
-    }
-  }, [campaigns])
+
 
   return (
 
     <div className='Dashboard'>
       <MetricInput submitCampaign={submitCampaign} />
-      <OverviewTable campaigns={calculatedCampaigns} />
+      {calculatedCampaigns.length > 0 && <OverviewTable campaigns={calculatedCampaigns} />}
 
     </div>
 
