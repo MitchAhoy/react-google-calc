@@ -9,11 +9,14 @@ function MetricInputCard(props) {
   return (
     <Card
       text='dark'
-      style={{ width: '18rem' }}
+      style={{
+        width: '18rem'
+      }}
       className='MetricInputCard border-0 m-3 shadow'
     >
       <Card.Header
-        className='bg-dark text-white'
+        className='text-white'
+        style={{ background: '#061058' }}
       >
         {props.metricLabel}
       </Card.Header>
@@ -26,7 +29,7 @@ function MetricInputCard(props) {
           className='bg-light'
         />
       </Card.Body>
-    </Card>
+    </Card >
 
 
 

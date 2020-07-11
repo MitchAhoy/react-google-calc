@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table'
-import removeBtn from './close.png'
 import DetailedBreakdown from '../DetailedBreakdown/DetailedBreakdown'
+import { Trash } from 'react-bootstrap-icons'
 
 
 function OverviewTable(props) {
@@ -24,7 +24,7 @@ function OverviewTable(props) {
 
   return (
     <div>
-      <Table responsive bordered hover>
+      <Table responsive bordered hover striped className='text-center'>
         <thead>
           <tr>
             {columns.map((col, idx) => <th key={idx}>{col}</th>)}
@@ -33,12 +33,12 @@ function OverviewTable(props) {
         <tbody>
           {props.campaigns.map((campaign, idx) => {
             return <tr key={idx}>
-              <td>{campaign.campaignName}</td>
-              <td>{campaign.additionalClicks}</td>
-              <td>{campaign.additionalConversions}</td>
-              <td>{campaign.additionalCost}</td>
-              <td onClick={showDetailedMetrics} id={campaign.id}>View More</td>
-              <td><img src={removeBtn} /></td>
+              <td className='align-middle'>{campaign.campaignName}</td>
+              <td className='align-middle'>{campaign.additionalClicks.toFixed()}</td>
+              <td className='align-middle'>{campaign.additionalConversions.toFixed()}</td>
+              <td className='align-middle'>${campaign.additionalCost.toFixed(2)}</td>
+              <td className='align-middle' onClick={showDetailedMetrics} id={campaign.id}><button id={campaign.id} className='btn btn-primary text-center'>View More</button></td>
+              <td className='align-middle' id={campaign.id} onClick={props.removeCampaign}><h2 id={campaign.id} style={{ cursor: 'pointer', color: 'red' }} color='red'>X</h2></td>
             </tr>
           })}
         </tbody>
